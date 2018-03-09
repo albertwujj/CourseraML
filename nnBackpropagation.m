@@ -8,21 +8,19 @@ function [J grad] = nnCostFunction(nn_params, ...
 % for our 2 layer neural network
 Theta1 = reshape(nn_params(1:hidden_layer_size * (input_layer_size + 1)), ...
                  hidden_layer_size, (input_layer_size + 1));
-
 Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):end), ...
                  num_labels, (hidden_layer_size + 1));
 
 % Setup some useful variables
 m = size(X, 1);
-
-
 J = 0;
 Theta1_grad = zeros(size(Theta1));
 Theta2_grad = zeros(size(Theta2));
-
-
-
 Y = zeros(size(y), 10);
+
+# MY CODE STARTS HERE
+# =========================================================================
+# -------------------------------------------------------------
 
 #Convert y (row vector) into a row "vector" of one-hot column vectors
 Y = y == [1:max(y)];
@@ -59,9 +57,9 @@ delta1 = error2 * XWBias;
 Theta1_grad = 1/m * delta1 + lambda/m * [zeros(size(Theta1, 1), 1) Theta1(:,2:end)];
 Theta2_grad = 1/m * delta2 + lambda/m * [zeros(size(Theta2, 1), 1) Theta2(:,2:end)];
 
-% -------------------------------------------------------------
+# -------------------------------------------------------------
 
-% =========================================================================
+# =========================================================================
 
 % Unroll gradients
 grad = [Theta1_grad(:) ; Theta2_grad(:)];
